@@ -59,7 +59,7 @@ This project demonstrates a button-controlled LED system implemented on an AVR m
 ## Simulation on Wokwi
 
 Run the project directly in the Wokwi simulator:
-[![Run on Wokwi](https://wokwi.com/projects/419441645494336513)
+[Run on Wokwi](https://wokwi.com/projects/419441645494336513)
 
 ## File Structure
 
