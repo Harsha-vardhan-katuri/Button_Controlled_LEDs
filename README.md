@@ -3,6 +3,8 @@
 ## Overview
 This project demonstrates how to control multiple LEDs based on button presses, with debouncing to prevent unintended multiple button state changes. The project uses an AVR-based microcontroller (e.g., Arduino) and toggles the state of three LEDs (connected to Pins 13, 12, and 11) in a cycling manner with each button press. The state changes are controlled via the button press, and debouncing ensures that only one state change happens per press.
 
+### **Note**: The project is implemented using **register-level programming**, and no inbuilt functions are used in the code.
+
 ## Components
 - **Microcontroller (e.g., Arduino)**  
 - **3 LEDs**  
