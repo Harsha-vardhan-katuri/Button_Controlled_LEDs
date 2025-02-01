@@ -1,84 +1,68 @@
-# Button-Controlled LED State Machine
+# LED Control with Button Press
 
-This project demonstrates a button-controlled LED system implemented on an AVR microcontroller using direct port manipulation. The LEDs cycle through different states based on the button presses, with debouncing logic to ensure accurate input reading.
+## Overview
+This project demonstrates how to control multiple LEDs based on button presses, with debouncing to prevent unintended multiple button state changes. The project uses an AVR-based microcontroller (e.g., Arduino) and toggles the state of three LEDs (connected to Pins 13, 12, and 11) in a cycling manner with each button press. The state changes are controlled via the button press, and debouncing ensures that only one state change happens per press.
 
-## Features
+## Components
+- **Microcontroller (e.g., Arduino)**  
+- **3 LEDs**  
+- **1 Pushbutton**  
+- **Resistors** (for LED and pushbutton connections)
+  
+## Working of the Project
+1. **Button Press**  
+   The pushbutton (connected to Pin 8) is used to control the state of the LEDs. Each time the button is pressed, the state of the LEDs cycles through the following states:
+   - **State 1**: Only LED1 (Pin 13) is ON
+   - **State 2**: Only LED2 (Pin 12) is ON
+   - **State 3**: Only LED3 (Pin 11) is ON
+   - **State 4**: All LEDs are ON
+   - **State 0**: All LEDs are OFF
 
-1. **LED Control:** Three LEDs connected to pins 13, 12, and 11 of the microcontroller.
-2. **Button Input:** A button connected to pin 8 with an internal pull-up resistor.
-3. **Debouncing Logic:** Ensures that button presses are accurately detected by filtering out noise.
-4. **State Management:** LEDs cycle through the following states:
-   - **State 0:** All LEDs off.
-   - **State 1:** LED1 on (Pin 13).
-   - **State 2:** LED2 on (Pin 12).
-   - **State 3:** LED3 on (Pin 11).
-   - **State 4:** All LEDs on.
+2. **Debouncing**  
+   To avoid multiple button presses from being registered as one, the program implements a debounce mechanism using a delay of 50ms. This ensures that only one button press is counted even if the button contact is noisy or bounces.
 
-## Hardware Requirements
+3. **LED Control**  
+   The LEDs are turned on or off based on the current state, and the state is toggled each time the button is pressed. When the button is pressed, the `ledstate` variable increments, and the LEDs are updated accordingly.
 
-- AVR Microcontroller (e.g., ATmega328P)
-- Three LEDs
-- One push-button
-- Pull-up resistor (internal or external)
-- Breadboard and connecting wires
+## Circuit Connections
+For the hardware setup, follow the circuit diagram below. I have attached a JSON file for the connection diagram. 
 
-## Software Requirements
+1. **LEDs**
+   - **LED1**: Pin 13
+   - **LED2**: Pin 12
+   - **LED3**: Pin 11
 
-- Arduino IDE (or equivalent AVR development environment)
-- Wokwi Simulator (optional, for virtual simulation)
+2. **Pushbutton**
+   - One side of the pushbutton connects to **Pin 8** (configured as an input with a pull-up resistor), and the other side connects to **Ground**.
 
-## Pin Configuration
+3. **Resistors**  
+   Ensure each LED has a current-limiting resistor (e.g., 220Ω) to prevent excessive current flow. Similarly, use a pull-up resistor for the pushbutton.
 
-| Component   | Pin  | Description                |
-|-------------|------|----------------------------|
-| LED1        | 13   | Connected to PB5           |
-| LED2        | 12   | Connected to PB4           |
-| LED3        | 11   | Connected to PB3           |
-| Button      | 8    | Connected to PB0 with pull-up resistor |
+## JSON Diagram for Circuit
+For the connection setup, you can refer to the attached JSON diagram code.
 
-## How It Works
+### How to View the Diagram
+1. Open the [Wokwi](https://wokwi.com) platform.
+2. Create a new project or open an existing one.
+3. Copy and paste the attached JSON code into the Wokwi editor to visualize the circuit and simulate the project.
 
-1. **Button Press Detection:**
-   - A button press (LOW state) triggers a change in the current LED state.
-   - Debouncing is implemented to ensure stable input readings.
+## Code Explanation
+### Global Variables
+- `ledstate`: Keeps track of the current LED state (0 to 4).
+- `buttonstate`: Holds the current state of the button (pressed or not).
+- `lastbuttonstate`: Tracks the previous state of the button for detecting state changes.
+- `lastDebounceTime`: Records the last time the button state changed to handle debouncing.
+- `debounceDelay`: The delay for debouncing, set to 50 milliseconds.
 
-2. **LED State Management:**
-   - The LEDs cycle through predefined states.
-   - The `ledstate` variable tracks the current state.
+### `setup()` Function
+- Configures the LED pins as outputs and the button pin as an input.
+- Initializes the serial communication for debugging.
+- Turns off all LEDs initially.
 
-3. **Output Control:**
-   - Based on the current state, LEDs are turned on or off using direct port manipulation.
+### `loop()` Function
+- Reads the button pin and checks if its state has changed.
+- If the debounce time has passed, it updates the `buttonstate`.
+- Cycles through the LED states and updates the LEDs based on the current state.
+- The LEDs are controlled by manipulating the `PORTB` register for each pin.
 
-## Usage Instructions
-
-1. Clone the repository or copy the code into your development environment.
-2. Connect the hardware as per the pin configuration table.
-3. Upload the code to the AVR microcontroller using the Arduino IDE.
-4. Press the button to cycle through the LED states.
-
-## Simulation on Wokwi
-
-Run the project directly in the Wokwi simulator:
-[Run on Wokwi](https://wokwi.com/projects/419441645494336513)
-
-## File Structure
-
-- **`main.c`**: Contains the source code for the project.
-- **`README.md`**: This documentation file.
-- **`wokwi.json`**: Configuration file for the Wokwi simulator (if applicable).
-
-## Future Enhancements
-
-- Add support for more LEDs or states.
-- Implement long-press detection for additional functionality.
-- Integrate external interrupts for button handling.
-
-## License
-
-This project is licensed under the MIT License. You are free to use, modify, and distribute the code.
-
-## Author
-
-**Harsha Vardhan Katuri**  
-katuriharshavardhan369@gmail.com
-
+---
