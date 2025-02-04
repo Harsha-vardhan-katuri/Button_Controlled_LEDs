@@ -48,6 +48,10 @@ For the connection setup, you can refer to the attached JSON diagram code.
 2. Create a new project or open an existing one.
 3. Copy and paste the attached JSON code into the Wokwi editor to visualize the circuit and simulate the project.
 
+### **Review the Project on Wokwi**
+You can view and simulate this project directly on Wokwi using the following link:
+[View on Wokwi](https://wokwi.com/projects/419441645494336513)
+
 ## Code Explanation
 ### Global Variables
 - `ledstate`: Keeps track of the current LED state (0 to 4).
