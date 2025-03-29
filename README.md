@@ -52,6 +52,12 @@ For the connection setup, you can refer to the attached JSON diagram code.
 You can view and simulate this project directly on Wokwi using the following link:
 [View on Wokwi](https://wokwi.com/projects/419441645494336513)
 
+## 📝 Author  
+**Harsha Vardhan Katuri**  
+
+## 🔗 License  
+This project is licensed under the **MIT License**.  
+
 
 
 ---
