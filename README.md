@@ -52,23 +52,6 @@ For the connection setup, you can refer to the attached JSON diagram code.
 You can view and simulate this project directly on Wokwi using the following link:
 [View on Wokwi](https://wokwi.com/projects/419441645494336513)
 
-## Code Explanation
-### Global Variables
-- `ledstate`: Keeps track of the current LED state (0 to 4).
-- `buttonstate`: Holds the current state of the button (pressed or not).
-- `lastbuttonstate`: Tracks the previous state of the button for detecting state changes.
-- `lastDebounceTime`: Records the last time the button state changed to handle debouncing.
-- `debounceDelay`: The delay for debouncing, set to 50 milliseconds.
 
-### `setup()` Function
-- Configures the LED pins as outputs and the button pin as an input.
-- Initializes the serial communication for debugging.
-- Turns off all LEDs initially.
-
-### `loop()` Function
-- Reads the button pin and checks if its state has changed.
-- If the debounce time has passed, it updates the `buttonstate`.
-- Cycles through the LED states and updates the LEDs based on the current state.
-- The LEDs are controlled by manipulating the `PORTB` register for each pin.
 
 ---
