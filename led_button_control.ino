@@ -12,7 +12,7 @@ void setup() {
 
   // Set button pin (Pin 8 as input with pull-up resistor)
   DDRB &= ~(1 << PB0);  // Set Pin 8 (PB0) as input
-
+  
   // Turn off LEDs initially
   PORTB &= ~(1 << PB5);  // Turn off LED1 (Pin 13)
   PORTB &= ~(1 << PB4);  // Turn off LED2 (Pin 12)
